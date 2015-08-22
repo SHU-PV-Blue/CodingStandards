@@ -1,1 +1,4 @@
-# CodingStandards
+# 内部编码规范
+
+使用MarkDown语法编辑。
+不拽英文了，全部用汉语完成。
