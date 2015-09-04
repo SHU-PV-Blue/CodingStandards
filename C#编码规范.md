@@ -131,14 +131,19 @@
 6. 如果变量是集合，则变量名要用复数。例如表格的行数，命名应为：RowsCount；
 7. 命名组件要采用匈牙利命名法，所有前缀均应遵循同一个组件名称缩写列表。
  
-### 1.3  组件名称缩写列表 ###
+### 1.3  组件类型缩写列表 ###
 
-匈牙利命名法的基本原则是：变量名=属性+类型+对象描述，这里将其简化为：组件变量名=组件类型缩写+组件描述。描述缩写的基本原则是取组件类名各单词的第一个字母，如果只有一个单词，则去掉其中的元音，留下辅音。缩写全部为小写。下表列举了一些常见组件的类型缩写以及命名示例：
+匈牙利命名法的基本原则是：变量名=属性+类型+对象描述，这里将其简化为：组件示例名=组件类型缩写+组件描述。描述缩写的基本原则是取组件类名各单词的第一个字母，如果只有一个单词，则去掉其中的元音，留下辅音。缩写全部为小写。下表列举了一些常见组件的类型缩写以及命名示例：
 <table>
    <tr>
       <td>组件类型</td>
       <td>缩写</td>
       <td>例子</td>
+   </tr>
+   <tr>
+      <td>Form</td>
+      <td>Frm</td>
+      <td>frmMenu</td>
    </tr>
    <tr>
       <td>Label</td>
@@ -226,24 +231,40 @@
       <td>cbList</td>
    </tr>
    <tr>
-      <td>MyImageButton</td>
-      <td>Mib</td>
-      <td>mibOK</td>
-   </tr>
-   <tr>
-      <td>WebComm.TreeView</td>
-      <td>Tv</td>
-      <td>tvUnit</td>
-   </tr>
-   <tr>
       <td>PageBar</td>
       <td>Pb</td>
       <td>pbMaster</td>
    </tr>
+   <tr>
+      <td>MyImageButton</td>
+      <td>Mib</td>
+      <td>mibOK</td>
+   </tr>
 </table>
+注意区别组件示例名和组件类型名，在VS中，新建一个Form是新建一个Form类型，类似于：
 
- 
+    public partial class Form1 : Form
+    {
+     ……
+    }
 
+这里的Form1是组件类型名，继承与Form，应遵守命名的基本约定中对类型的约束，采用帕斯卡命名法，如：
+
+    public partial class LoginForm : Form
+    {
+     ……
+    }
+
+当需要实例化它时，则采用匈牙利命名法，如：
+
+    LoginForm lfLogin = new LoginForm();
+    lfLogin.Show();
+
+但Form类型绝大多数情况下是只需实例一次的，所以代码可以写成：
+
+    (new LoginForm()).Show();
+
+避开繁杂的匈牙利命名。减少代码中不必要的局部变量命名，也是提高代码质量的方法之一。
  
 
  
