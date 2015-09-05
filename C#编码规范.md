@@ -311,7 +311,7 @@
     using System.Threading;
     ……
 
-2.3     方法注释规范
+### 2.3 方法注释规范 ###
 
 1. C# 提供一种机制，使程序员可以使用含有XML 文本的特殊注释语法为他们的代码编写文档。在源代码文件中，具有某种格式的注释可用于指导某个工具根据这些注释和它们后面的源代码元素生成XML。具体应用当中，类、接口、属性、方法必须有<Summary>节，另外方法如果有参数及返回值，则必须有`<Param>`及`<Returns>`节。示例如下：   
 `/// <summary>`   
@@ -322,7 +322,9 @@
 2. 事件不需要头注解，但包含复杂处理时（如：循环/数据库操作/复杂逻辑等），应分割成单一处理函数，事件再调用函数。
 3. 所有的方法必须在其定义前增加方法注释。
 4. 方法注释采用 /// 形式自动产生XML标签格式的注释。
- 
+5. 修改任何方法，必须要添加修改记录的注释。
+
+XML注释标记与说明：
 <table>
    <tr>
       <td>标记</td>
@@ -392,18 +394,89 @@
       <td>value</td>
       <td>得以描述属性。</td>
    </tr>
-
 </table>
- 
 
- 
+示例如下：     
 
- 
+    /// <summary>
+    /// 使用MD5计算哈希散列值
+    /// </summary>
+    /// <param name="strSource">需要加密的字符串</param>
+    /// <param name="strSaltCode">盐值</param>
+    /// <return>加密后的字符串</return>
+    public static string EncryptMD5(string strSource, string strSaltCode)
+    {
+    	//MD5加密服务对象
+    	System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+    
+    	byte[] value;
+    	byte[] hash;
+    	……
 
- 
+### 2.4 代码行注释规范 ###
 
- 
+1. 如果处理某一个功能需要很多行代码实现，并且有很多逻辑结构块，类似此种代码应该在代码开始前添加注释，说明此块代码的处理思路及注意事项等；
+2. 注释从新行增加，与代码开始处左对齐；
+3. 双斜线与注释之间以空格分开，
 
+示例如下所示：
+
+    public void Dispose()
+    {
+    	// 如果事务开启过,则释放事务对象
+    	if (this.DIbTrans != null)
+    		this.DIbTrans.Dispose();
+    	// 如果连接已经打开,则关闭连接并释放资源
+    	if (this.IDbConn.State == ConnectionState.Open)
+    	{
+    		this.IDbConn.Close();
+    		this.IDbConn.Dispose();
+    	}
+    }
+ 
+### 2.5 变量注释规范 ###
+
+1. 定义变量时需添加变量注释，用以说明变量的用途。
+2. Class级变量应以采用 /// 形式自动产生XML标签格式的注释。
+3. 方法级的变量注释可以放在变量声明语句的后面，与前后行变量声明的注释左对齐，注释与代码间以Tab隔开。
+
+代码示例如下：
+
+    class Crawler
+    	{
+    		/// <summary>
+			/// 需要访问的链接地址
+			/// </summary>
+    		string _link;
+    		/// <summary>
+    		/// 保存得到的HTML代码的文件名
+			/// </summary>
+    		string _fileName;
+			
+    		/// <summary>
+			/// 构造函数
+			/// </summary>
+			/// <param name="link">需要访问的链接地址</param>
+			/// <param name="fileName">保存得到的HTML代码的文件名</param>
+    		public Crawler(string link, string fileName)
+    		{
+    			_link = link;
+    			_fileName = fileName;
+    		}
+    
+    		/// <summary>
+			/// 抓取指定链接的HTML代码，并保存到文件
+			/// </summary>
+			/// <exception>
+			/// WebException:访问网络失败
+			/// </exception>
+			/// <returns>是否成功抓取并保存</returns>
+    		public bool Crawl()
+    		{
+    			HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(_link);//创建一个网络请求对象
+    			request.Method = WebRequestMethods.Http.Get;	//设置请求的方法
+    			HttpWebResponse response;						//创建一个网络请求回应对象
+			……
  
 
  
