@@ -301,11 +301,11 @@
     // 
     // 描述(Description): 包含类PVBlue.Tool.WebTool的的声明与定义
     //
+    // 引用(Using): PVBlue.Database.dll
+    //
     // 作者(Author): 宋建鑫，雷薇
     //
     // 日期(Create Date): 2015/09/04
-    //
-    // 引用(Using): PVBlue.Database.dll
     //
     //*****************************************************************************
 
