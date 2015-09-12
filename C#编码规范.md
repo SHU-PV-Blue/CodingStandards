@@ -243,7 +243,7 @@
       <td>mibOK</td>
    </tr>
 </table>
-注意区别组件示例名和组件类型名，在VS中，新建一个Form是新建一个Form类型，类似于：
+注意区别组件实例名和组件类型名，在VS中，新建一个Form是新建一个Form类型，类似于：
 
     public partial class Form1 : Form
     {
